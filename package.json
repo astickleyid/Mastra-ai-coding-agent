@@ -1,13 +1,12 @@
 {
-  "name": "coding-agent",
-  "version": "0.2.0",
-  "description": "Advanced Mastra AI coding agent with secure E2B sandbox execution, comprehensive file management, and multi-language support for Python, JavaScript, and TypeScript development workflows",
-  "main": "index.js",
+  "name": "personal-desktop-sandbox",
+  "version": "1.0.0",
+  "description": "A personal desktop sandbox with a coding agent inside.",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "mastra dev",
-    "build": "mastra build",
-    "start": "mastra start"
+    "start": "npm run build:electron && electron .",
+    "build": "npm run build:electron && electron-builder",
+    "build:electron": "npx tsc -p tsconfig.electron.json"
   },
   "keywords": [],
   "author": "",
@@ -19,17 +18,15 @@
   "dependencies": {
     "@ai-sdk/google": "latest",
     "@e2b/code-interpreter": "^1.5.1",
-    "@mastra/core": "latest",
-    "@mastra/fastembed": "latest",
-    "@mastra/libsql": "latest",
-    "@mastra/loggers": "latest",
-    "@mastra/mcp": "latest",
-    "@mastra/memory": "latest",
+    "ai": "^5.0.38",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
-    "mastra": "latest",
+    "electron": "^38.1.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.9",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }

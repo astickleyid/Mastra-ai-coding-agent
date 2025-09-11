@@ -1,4 +1,4 @@
-import { createTool } from '@mastra/core/tools';
+import { createTool } from './create-tool';
 import z from 'zod';
 import { FilesystemEventType, FileType, Sandbox } from '@e2b/code-interpreter';
 
@@ -193,7 +193,7 @@ export const writeFiles = createTool({
 
       return {
         success: true,
-        filesWritten: context.files.map(file => file.path),
+        filesWritten: context.files.map((file) => file.path),
       };
     } catch (e) {
       return {

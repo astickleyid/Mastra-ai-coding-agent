@@ -1,6 +1,3 @@
-import { Agent } from '@mastra/core/agent';
-import { LibSQLStore, LibSQLVector } from '@mastra/libsql';
-import { Memory } from '@mastra/memory';
 import { google } from '@ai-sdk/google';
 import {
   checkFileExists,
@@ -17,11 +14,11 @@ import {
   writeFile,
   writeFiles,
 } from '../tools/e2b';
-import { fastembed } from '@mastra/fastembed';
+import { Agent } from '../agent';
+import { Memory } from '../memory';
 
 export const codingAgent = new Agent({
-  name: 'Coding Agent',
-  instructions: `
+  system: `
 # Mastra Coding Agent for E2B Sandboxes
 
 You are an advanced coding agent that plans, writes, executes, and iterates on code in secure, isolated E2B sandboxes with comprehensive file management, live monitoring, and development workflow capabilities.
@@ -187,7 +184,7 @@ For sophisticated projects, leverage:
 
 Remember: You are not just a code executor, but a complete development environment that can handle sophisticated, multi-file projects with professional development workflows and comprehensive monitoring capabilities.
 `,
-  model: google('gemini-pro'),
+  model: google('gemini-1.5-pro-latest'),
   tools: {
     createSandbox,
     runCode,
@@ -203,15 +200,5 @@ Remember: You are not just a code executor, but a complete development environme
     watchDirectory,
     runCommand,
   },
-  memory: new Memory({
-    storage: new LibSQLStore({ url: 'file:../../mastra.db' }),
-    options: {
-      threads: { generateTitle: true },
-      semanticRecall: true,
-      workingMemory: { enabled: true },
-    },
-    embedder: fastembed,
-    vector: new LibSQLVector({ connectionUrl: 'file:../../mastra.db' }),
-  }),
-  defaultStreamOptions: { maxSteps: 20 },
+  memory: new Memory(),
 });
