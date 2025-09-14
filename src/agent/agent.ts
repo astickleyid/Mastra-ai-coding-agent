@@ -19,6 +19,10 @@ export class Agent {
     this.memory = options.memory;
   }
 
+  addMessageToMemory(message: CoreMessage) {
+    this.memory.add(message);
+  }
+
   async run(input: string): Promise<any> {
     this.memory.add({ role: 'user', content: input });
 

@@ -11,7 +11,7 @@ function createWindow() {
     },
   });
 
-  mainWindow.loadFile('electron/index.html');
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
 }
 
 ipcMain.on('run-agent', async (event, input) => {
@@ -21,7 +21,7 @@ ipcMain.on('run-agent', async (event, input) => {
     response += text;
     event.sender.send('agent-response-stream', text);
   }
-  codingAgent.memory.add({ role: 'assistant', content: response });
+  codingAgent.addMessageToMemory({ role: 'assistant', content: response });
 });
 
 app.on('ready', createWindow);

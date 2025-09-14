@@ -4,14 +4,14 @@
   "description": "A personal desktop sandbox with a coding agent inside.",
   "main": "dist/main.js",
   "scripts": {
-    "start": "npm run build:electron && electron .",
-    "build": "npm run build:electron && electron-builder",
-    "build:electron": "npx tsc -p tsconfig.electron.json"
+    "start": "npm run build:esbuild && electron .",
+    "build": "npm run build:esbuild && electron-builder",
+    "build:electron": "npx tsc -p tsconfig.electron.json",
+    "build:esbuild": "npx esbuild electron/main.ts electron/preload.ts --bundle --platform=node --outdir=dist --external:electron && cp electron/index.html dist/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "engines": {
     "node": ">=20.9.0"
   },

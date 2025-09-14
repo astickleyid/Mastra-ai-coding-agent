@@ -189,7 +189,8 @@ export const writeFiles = createTool({
   execute: async ({ context }) => {
     try {
       const sandbox = await Sandbox.connect(context.sandboxId);
-      await sandbox.files.write(context.files);
+      const filesToWrite = context.files.map(f => ({ path: f.path, data: f.data }));
+      await sandbox.files.write(filesToWrite);
 
       return {
         success: true,
