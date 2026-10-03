@@ -18,13 +18,13 @@
   "dependencies": {
     "@ai-sdk/google": "latest",
     "@e2b/code-interpreter": "^1.5.1",
-    "ai": "^5.0.38",
+    "ai": "^7.0.127",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
-    "electron": "^38.1.0",
-    "electron-builder": "^26.0.12",
+    "electron": "^41.10.6",
+    "electron-builder": "^26.15.3",
     "esbuild": "^0.25.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
